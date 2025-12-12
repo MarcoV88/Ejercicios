@@ -174,19 +174,13 @@ class CuentaBancaria {
     }
 
     // método ingresar COMPLETAR
-    public static void ingresar(){
-        Scanner sc = new MyScanner(System in);
-        System.out.println ("Indique cuanto dinero desea ingresar: ")
-        int ingresa = sc.nextInt();
+    public static void ingresar(Double ingresa){
         setSaldo(getSaldo()+ingresa);
         System.out.println ("El dinero ha sido ingresado correctamente")
     }
 
     // método retirar COMPLETAR
-    public static void retirar(){
-        Scanner sc = new MyScanner(System in);
-        System.out.println ("Indique cuanto dinero desea retirar: ")
-        int retira = sc.nextInt();
+    public static void retirar(Double retira){
         setSaldo(getSaldo()-retira);
         System.out.println ("El dinero ha sido retirado correctamente")        
     }
@@ -253,17 +247,93 @@ class Libro {
 
 
 class Biblioteca {
-
     // lista de libros COMPLETAR
-    
+    List<String> libros = new ArrayList<>();
 
     // añadirLibro COMPLETAR
-    
+    public static void añadirLibro(){
+        boolean continuar = true;
+        Scanner sc = new MyScanner(System in);
+        do {
+            System.out.println("¿Quiere añadir un libro?(s/n) ");
+            String añadir = sc.next();
+            if (añadir.equals("s"){
+                System.out.println("Indique el título del libro: ");
+                String titulo = sc.next();
+                System.out.println("Indique el autor del libro: ");
+                String autor = sc.next();
+                System.out.println("Indique la disponibilidad del libro: ");
+                boolean disponible = sc.nextBoolean();
+
+                Libro libro = new Libro (titulo, autor, disponible);
+                continuar = true;
+            } else if (añadir.equals ("n"){
+                System.out.println ("Hasta luego!");
+                continuar = false;
+            } else {
+                System.out.println ("Responda con 's' (sí) o 'n' (no)");
+                continuar = true;
+            }
+        }while (continuar)
+    }
 
     // prestarLibro COMPLETAR
+    public static void prestarLibro(){
+        boolean seguir = true;
+        Scanner sc = new MyScanner(System in);
+        do {
+            System.out.println("Quieres prestar un libro?(s/n) ");
+            if (añadir.equals("s"){                
+                System.out.println("Indique el título del libro: ");
+                String titulo = sc.next();
+                System.out.println("Indique la disponibilidad del libro: ");
+                boolean disponible = sc.nextBoolean();
+                for (Libros libro : libros){
+                    if (libro.titulo == titulo && disponible) {
+                        System.out.println ("El libro ha sido prestado");
+                        libro.disponible == False;
+                        }
+                    }      
+                seguir = true;
+            } else if (añadir.equals("n"){
+                System.out.println("Hasta luego!");
+                seguir = false;
+            } else{
+                System.out.println ("Responda con 's' (sí) o 'n' (no)");
+                seguir = true;
+            }        
+        }while(seguir)
     
+    }
 
     // devolverLibro COMPLETAR
+    public class devolverLibro(){
+        boolean avanzar = true;
+        Scanner sc = new MyScanner(System in);
+        do {
+            System.out.println("Quieres prestar un libro?(s/n) ");
+            if (añadir.equals("s"){                
+                System.out.println("Indique el título del libro: ");
+                String titulo = sc.next();
+                System.out.println("Indique la disponibilidad del libro: ");
+                boolean disponible = sc.nextBoolean();
+                for (Libros libro : libros){
+                    if (libro.titulo == titulo && !disponible) {
+                        System.out.println ("El libro ha sido prestado");
+                        libro.disponible == True;
+                        }
+                    }      
+                avanzar = true;
+            } else if (añadir.equals("n"){
+                System.out.println("Hasta luego!");
+                avanzar = false;
+            } else{
+                System.out.println ("Responda con 's' (sí) o 'n' (no)");
+                avanzar = true;
+            }        
+        }while(avanzar)
+    
+    }
     
 }
 
@@ -278,6 +348,8 @@ class Biblioteca {
 class Producto {
 
     // atributos COMPLETAR
+    private String nombre;
+    private double precio;
    
 
     // constructor COMPLETAR
