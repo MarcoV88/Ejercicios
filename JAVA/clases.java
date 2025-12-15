@@ -1,5 +1,3 @@
-import java.util.List;
-import java.util.Scanner;
 import java.util.ArrayList;
 // Crea una clase Coche con marca, modelo y velocidad.
 // Implementa métodos para acelerar y frenar.
