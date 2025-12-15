@@ -373,7 +373,7 @@ class Carrito {
         System.out.println("--------------");
 
 
-        CuentaBancaria cuenta = new CuentaBancaria("Juan", 1000);
+        CuentaBancaria cuenta = new CuentaBancaria("Roberto", 1000);
         cuenta.mostrarSaldo();
         cuenta.ingresar(500);
         cuenta.retirar(200);
