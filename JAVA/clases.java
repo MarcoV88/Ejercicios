@@ -42,14 +42,14 @@ class Coche {
 
     // Método acelerar (suma +10) COMPLETAR
     public void acelerar() {
-        velocidad += 10;
+        setVelocidad(getVelocidad()+10);
         System.out.println("Has incrementado tu velocidad en 10 km/h, ahora mismo vas a " + velocidad + " km/h.");
     }
 
     // Método frenar (resta -10 y nunca menor que 0) COMPLETAR
     public void frenar() {
-        if (velocidad >= 10) {
-            velocidad -= 10;
+        if (getVelocidad() >= 10) {
+            setVelocidad(getVelocidad-10);
             System.out.println("Has reducido tu velocidad en 10 km/h, ahora mismo vas a " + velocidad + " km/h");
         } else {
             velocidad = 0;
@@ -151,7 +151,7 @@ class CuentaBancaria {
     // método ingresar COMPLETAR
     public void ingresar(double cantidad) {
         if (cantidad > 0) {
-            saldo += cantidad;
+            setSaldo(getSaldo()+cantidad);
             System.out.println("Se han ingresado " + cantidad + " € correctamente.");
         } else {
             System.out.println("La cantidad a ingresar debe ser positiva.");
@@ -162,10 +162,10 @@ class CuentaBancaria {
     public void retirar(double cantidad) {
         if (cantidad > 0) {
             if (saldo >= cantidad) {
-                saldo -= cantidad;
+                setSaldo(getSaldo()-cantidad);
                 System.out.println("Se han retirado " + cantidad + " € correctamente.");
             } else {
-                System.out.println("Saldo insuficiente. Saldo actual: " + saldo + " €");
+                System.out.println("Saldo insuficiente. Saldo actual: " + getSaldo() + " €");
             }
         } else {
             System.out.println("La cantidad a retirar debe ser positiva.");
@@ -174,8 +174,8 @@ class CuentaBancaria {
 
     // método mostrarSaldo COMPLETAR
     public void mostrarSaldo() {
-        System.out.println("Titular: " + titular);
-        System.out.println("Saldo actual: " + saldo + " €");
+        System.out.println("Titular: " + getTitular());
+        System.out.println("Saldo actual: " + getSaldo() + " €");
     }
 }
 
@@ -223,9 +223,9 @@ class Libro {
     // método mostrarInfo COMPLETAR
 
     public void mostrarInfo() {
-        System.out.println("Título: " + titulo);
-        System.out.println("Autor: " + autor);
-        System.out.println("Disponible: " + (disponible ? "Sí" : "No"));
+        System.out.println("Título: " + getTitulo());
+        System.out.println("Autor: " + getAutor());
+        System.out.println("Disponible: " + (isDisponible() ? "Sí" : "No"));
     }
 }
 
