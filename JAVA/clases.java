@@ -1,4 +1,4 @@
-import java.util.Scanner;
+import java.util.List;
 import java.util.Scanner;
 import java.util.ArrayList;
 // Crea una clase Coche con marca, modelo y velocidad.
@@ -6,69 +6,69 @@ import java.util.ArrayList;
 // Completa lo que falta.
 //
 
+
 class Coche {
     private String marca;
     private String modelo;
     private int velocidad;
 
-    // Constructor COMPLETAR
-    public Coche (String marca, String modelo, int velocidad){
+    public Coche(String marca, String modelo) {
         this.marca = marca;
         this.modelo = modelo;
-        this.velocidad = velocidad;
-
+        this.velocidad = 30;
     }
 
     public String getMarca() {
         return marca;
     }
 
-    public String getModelo(){
+    public String getModelo() {
         return modelo;
     }
 
-    public int getVelocidad(){
+    public int getVelocidad() {
         return velocidad;
     }
 
-    public void setMarca(){
+    public void setMarca(String marca) {
         this.marca = marca;
     }
 
-    public void setModelo(String  modelo){
+    public void setModelo(String modelo) {
         this.modelo = modelo;
     }
 
-    public void setVelocidad(int velocidad){
+    public void setVelocidad(int velocidad) {
         this.velocidad = velocidad;
     }
 
     // Método acelerar (suma +10) COMPLETAR
-    public void acelerar () {
-        setVelocidad(getVelocidad() + 10);
-        System.out.println ("Has incrementado tu velodicad en 10 km/h, ahora mismo vas a "+setVelocidad()+ " km/h.");
+    public void acelerar() {
+        velocidad += 10;
+        System.out.println("Has incrementado tu velocidad en 10 km/h, ahora mismo vas a " + velocidad + " km/h.");
     }
 
-
     // Método frenar (resta -10 y nunca menor que 0) COMPLETAR
-    public void frenar () {
-        if (getVelocidad() >= 10) {
-            setVelocidad(getVelocidad() - 10);
-            System.out.println ("Has reducido tu velocidad en 10 km/h, ahora mismo vas a "+setVelocidad()+ " km/h");
+    public void frenar() {
+        if (velocidad >= 10) {
+            velocidad -= 10;
+            System.out.println("Has reducido tu velocidad en 10 km/h, ahora mismo vas a " + velocidad + " km/h");
         } else {
-            System.out.println ("No puede frenar ya que va a menos de 10 km/h. ");
+            velocidad = 0;
+            System.out.println("El coche se ha detenido completamente.");
         }
     }
 
 
     // Método mostrarDatos COMPLETAR
-    public void mostrarDatos (){
-        System.out.println ("Modelo: "+getModelo());
-        System.out.println ("Marca: "+getMarca());
-        System.out.println ("Velocidad: "+getVelocidad());
-    }
 
+    public void mostrarDatos() {
+        System.out.println("Marca: " + marca);
+        System.out.println("Modelo: " + modelo);
+        System.out.println("Velocidad: " + velocidad + " km/h");
+    }
 }
+
 
 
 
@@ -85,54 +85,35 @@ class Alumno {
     private ArrayList<Integer> notas;
 
     // Constructor COMPLETAR
-    public class Alumno (String nombre){
+    public Alumno(String nombre) {
         this.nombre = nombre;
-        this.ArrayList<Integer> = new ArrayList;
+        this.notas = new ArrayList<>();
     }
-   
+
 
     // Método añadirNota COMPLETAR
-    public static void añadirNota(){
-        Scanner sc = new MyScanner(System in);
-        boolean continuar = true;
-
-        do{
-            System.out.println ("¿Vas a guardar alguna nota?(s/n)");
-            String guardar = sc.next();
-
-            if (guardar.equals("s")){
-                System.out.println ("¿Cual es la nota que ha sacado?");
-                int nota = sc.nextInt();
-                notas.add(nota);
-                continuar = true;
-            } else if (guardar.equals("n")){
-                System.out.println ("Hasta luego, tenga un buen día!");
-                continuar = false;
-            } else {
-                System.out.println ("Te has equivocado de tecla, no pasa nada!")
-                continuar = true;
-            }
-
-        }while (continuar) 
+    public void añadirNota(int nota) {
+        if (nota >= 0 && nota <= 10) {
+            notas.add(nota);
+            System.out.println("Nota " + nota + " añadida correctamente.");
+        } else {
+            System.out.println("La nota debe estar entre 0 y 10.");
+        }
     }
     // Método calcularMedia COMPLETAR
-    public static void calcularMedia(){
-        double media = 0;
+    public double calcularMedia() {
         double suma = 0;
-        double total = notas.length;
-        for (int i, i < total; i++){
-            suma += notas [i];
+        for (int nota : notas) {
+            suma += nota;
         }
-        media = suma / total;
-
-        System.out.println ("Su media es de "+media)
+        return suma / notas.size();
     }
 
     // Método mostrarInfo COMPLETAR
-    public static void mostrarInfo(){
-        Scanner sc = new MyScanner(System in);
-        System.out.println ("Indique su nombre: ")
-        nombre = sc.next(); 
+    public void mostrarInfo() {
+        System.out.println("Nombre: " + nombre);
+        System.out.println("Notas: " + notas);
+        System.out.println("Media: " + calcularMedia());
     }
 }
 
@@ -152,46 +133,53 @@ class CuentaBancaria {
     private double saldo;
 
     // constructor COMPLETAR
-    public CuentaBancaria (String titular, double saldo){
+    public CuentaBancaria(String titular, double saldoInicial) {
         this.titular = titular;
-        this.saldo = saldo;
+        this.saldo = saldoInicial;
     }
 
     public String getTitular() {
         return titular;
     }
 
-    public String getSaldo(){
+    public double getSaldo() {
         return saldo;
     }
 
-    public void setTitular(String titular){
+    public void setTitular(String titular) {
         this.titular = titular;
     }
 
-    public void setSaldo(double saldo){
-        this.saldo = saldo;
-    }
-
     // método ingresar COMPLETAR
-    public static void ingresar(Double ingresa){
-        setSaldo(getSaldo()+ingresa);
-        System.out.println ("El dinero ha sido ingresado correctamente")
+    public void ingresar(double cantidad) {
+        if (cantidad > 0) {
+            saldo += cantidad;
+            System.out.println("Se han ingresado " + cantidad + " € correctamente.");
+        } else {
+            System.out.println("La cantidad a ingresar debe ser positiva.");
+        }
     }
 
     // método retirar COMPLETAR
-    public static void retirar(Double retira){
-        setSaldo(getSaldo()-retira);
-        System.out.println ("El dinero ha sido retirado correctamente")        
+    public void retirar(double cantidad) {
+        if (cantidad > 0) {
+            if (saldo >= cantidad) {
+                saldo -= cantidad;
+                System.out.println("Se han retirado " + cantidad + " € correctamente.");
+            } else {
+                System.out.println("Saldo insuficiente. Saldo actual: " + saldo + " €");
+            }
+        } else {
+            System.out.println("La cantidad a retirar debe ser positiva.");
+        }
     }
-   
 
     // método mostrarSaldo COMPLETAR
-    public static void mostrarSaldo(){
-        System.out.println ("Su saldo es de "+getSaldo()+ " €")
+    public void mostrarSaldo() {
+        System.out.println("Titular: " + titular);
+        System.out.println("Saldo actual: " + saldo + " €");
     }
 }
-
 
 
 
@@ -208,133 +196,95 @@ class Libro {
     private String titulo;
     private String autor;
     private boolean disponible;
-    
-    
+
+    public Libro(String titulo, String autor) {
+        this.titulo = titulo;
+        this.autor = autor;
+        this.disponible = true;
+    }
+
+
     // constructor COMPLETAR
+
     public String getTitulo() {
         return titulo;
     }
 
-    public String getAutor(){
+    public String getAutor() {
         return autor;
     }
 
-    public boolean getDisponible(){
+    public boolean isDisponible() {
         return disponible;
     }
 
-    public void setTitulo(String titulo){
-        this.titulo = titulo;
-    }
-
-    public void setAutor(String autor){
-        this.autor = autor;
-    }
-
-    public void setDisponible(boolena disponible){
+    public void setDisponible(boolean disponible) {
         this.disponible = disponible;
-    }    
-   
+    }
 
     // método mostrarInfo COMPLETAR
-    public static void mostrarInfo(){
-        System.out.println ("Título: "+titulo)
-        System.out.println ("Autor: "+autor)
-        System.out.println ("Disponibilidad: "+disponible)
+
+    public void mostrarInfo() {
+        System.out.println("Título: " + titulo);
+        System.out.println("Autor: " + autor);
+        System.out.println("Disponible: " + (disponible ? "Sí" : "No"));
     }
 }
 
-
-
 class Biblioteca {
     // lista de libros COMPLETAR
-    List<String> libros = new ArrayList<>();
+    private ArrayList<Libro> libros;
+
+    public Biblioteca() {
+        libros = new ArrayList<>();
+    }
 
     // añadirLibro COMPLETAR
-    public static void añadirLibro(){
-        boolean continuar = true;
-        Scanner sc = new MyScanner(System in);
-        do {
-            System.out.println("¿Quiere añadir un libro?(s/n) ");
-            String añadir = sc.next();
-            if (añadir.equals("s"){
-                System.out.println("Indique el título del libro: ");
-                String titulo = sc.next();
-                System.out.println("Indique el autor del libro: ");
-                String autor = sc.next();
-                System.out.println("Indique la disponibilidad del libro: ");
-                boolean disponible = sc.nextBoolean();
-
-                Libro libro = new Libro (titulo, autor, disponible);
-                continuar = true;
-            } else if (añadir.equals ("n"){
-                System.out.println ("Hasta luego!");
-                continuar = false;
-            } else {
-                System.out.println ("Responda con 's' (sí) o 'n' (no)");
-                continuar = true;
-            }
-        }while (continuar)
+    public void añadirLibro(Libro libro) {
+        libros.add(libro);
+        System.out.println("Libro '" + libro.getTitulo() + "' añadido a la biblioteca.");
     }
 
     // prestarLibro COMPLETAR
-    public static void prestarLibro(){
-        boolean seguir = true;
-        Scanner sc = new MyScanner(System in);
-        do {
-            System.out.println("Quieres prestar un libro?(s/n) ");
-            if (añadir.equals("s"){                
-                System.out.println("Indique el título del libro: ");
-                String titulo = sc.next();
-                System.out.println("Indique la disponibilidad del libro: ");
-                boolean disponible = sc.nextBoolean();
-                for (Libros libro : libros){
-                    if (libro.titulo == titulo && disponible) {
-                        System.out.println ("El libro ha sido prestado");
-                        libro.disponible == False;
-                        }
-                    }      
-                seguir = true;
-            } else if (añadir.equals("n"){
-                System.out.println("Hasta luego!");
-                seguir = false;
-            } else{
-                System.out.println ("Responda con 's' (sí) o 'n' (no)");
-                seguir = true;
-            }        
-        }while(seguir)
-    
+
+    public void prestarLibro(String titulo) {
+        for (Libro libro : libros) {
+            if (libro.getTitulo().equals(titulo)) {
+                if (libro.isDisponible()) {
+                    libro.setDisponible(false);
+                    System.out.println("Libro '" + titulo + "' prestado correctamente.");
+                } else {
+                    System.out.println("El libro '" + titulo + "' no está disponible.");
+                }
+                return;
+            }
+        }
+        System.out.println("No se encontró el libro '" + titulo + "'.");
     }
 
     // devolverLibro COMPLETAR
-    public class devolverLibro(){
-        boolean avanzar = true;
-        Scanner sc = new MyScanner(System in);
-        do {
-            System.out.println("Quieres prestar un libro?(s/n) ");
-            if (añadir.equals("s"){                
-                System.out.println("Indique el título del libro: ");
-                String titulo = sc.next();
-                System.out.println("Indique la disponibilidad del libro: ");
-                boolean disponible = sc.nextBoolean();
-                for (Libros libro : libros){
-                    if (libro.titulo == titulo && !disponible) {
-                        System.out.println ("El libro ha sido prestado");
-                        libro.disponible == True;
-                        }
-                    }      
-                avanzar = true;
-            } else if (añadir.equals("n"){
-                System.out.println("Hasta luego!");
-                avanzar = false;
-            } else{
-                System.out.println ("Responda con 's' (sí) o 'n' (no)");
-                avanzar = true;
-            }        
-        }while(avanzar)
-    
+
+    public void devolverLibro(String titulo) {
+        for (Libro libro : libros) {
+            if (libro.getTitulo().equals(titulo)) {
+                if (!libro.isDisponible()) {
+                    libro.setDisponible(true);
+                    System.out.println("Libro '" + titulo + "' devuelto correctamente.");
+                } else {
+                    System.out.println("El libro '" + titulo + "' ya estaba disponible.");
+                }
+                return;
+            }
+        }
+        System.out.println("No se encontró el libro '" + titulo + "'.");
     }
-    
+
+    public void mostrarLibros() {
+        System.out.println("Libros en la biblioteca:");
+        for (Libro libro : libros) {
+            libro.mostrarInfo();
+        }
+    }
 }
 
 
@@ -350,56 +300,116 @@ class Producto {
     // atributos COMPLETAR
     private String nombre;
     private double precio;
-   
 
     // constructor COMPLETAR
-    
+
+    public Producto(String nombre, double precio) {
+        this.nombre = nombre;
+        this.precio = precio;
+    }
 
     // getters opcionales COMPLETAR
-    
+
+    public String getNombre() {
+        return nombre;
+    }
+
+    public double getPrecio() {
+        return precio;
+    }
 }
-
-
 
 class Carrito {
 
     // lista de productos COMPLETAR
-    
+    private ArrayList<Producto> productos;
+
+    public Carrito() {
+        productos = new ArrayList<>();
+    }
 
     // añadirProducto COMPLETAR
-    
+
+    public void añadirProducto(Producto producto) {
+        productos.add(producto);
+        System.out.println("Producto '" + producto.getNombre() + "' añadido al carrito.");
+    }
 
     // calcularTotal COMPLETAR
-    
+
+    public double calcularTotal() {
+        double total = 0;
+        for (Producto producto : productos) {
+            total += producto.getPrecio();
+        }
+        return total;
+    }
 
 }
-
-
 
 
 // El main está vacío para que cada alumno pruebe los ejercicios
 // que quiera. Pueden crear objetos y llamar métodos.
 //
 
-public class Main {
+
+    public class Main {
     public static void main(String[] args) {
-        
-        Coche coche = new Coche (Seat, Ibiza, 60);
-        Coche.mostrarDatos();
-        Coche.acelerar();
-        Coche.frenar();
 
-        Alumno.mostrarInfo();
-        Alumno.añadirNota();
-        Alumno.calcularMedia();
+        Coche coche = new Coche("Seat", "Ibiza");
+        coche.mostrarDatos();
+        coche.acelerar();
+        coche.frenar();
 
-        CuentaBancaria cuenta = new CuentaBancaria ("Juan", 1600)
-        cuenta.ingresar();
-        cuenta.retirar();
+        System.out.println("--------------");
+        System.out.println("--------------");
+
+
+        Alumno alumno = new Alumno("Juan");
+        alumno.añadirNota(8);
+        alumno.añadirNota(7);
+        alumno.añadirNota(9);
+        alumno.mostrarInfo();
+
+        System.out.println("--------------");
+        System.out.println("--------------");
+
+
+        CuentaBancaria cuenta = new CuentaBancaria("Juan", 1000);
+        cuenta.mostrarSaldo();
+        cuenta.ingresar(500);
+        cuenta.retirar(200);
         cuenta.mostrarSaldo();
 
-        Libro libro = new Libro ("El Quijote", "Cervantes", True)
-        libro.mostrarInfo();
+        System.out.println("--------------");
+        System.out.println("--------------");
+
+
+        Biblioteca biblioteca = new Biblioteca();
+        Libro libro1 = new Libro("El Quijote", "Cervantes");
+        Libro libro2 = new Libro("Cien años de soledad", "García Márquez");
+
+        biblioteca.añadirLibro(libro1);
+        biblioteca.añadirLibro(libro2);
+        biblioteca.mostrarLibros();
+        System.out.println("--------------");
+        biblioteca.prestarLibro("El Quijote");
+        biblioteca.mostrarLibros();
+        System.out.println("--------------");
+        biblioteca.devolverLibro("El Quijote");
+        biblioteca.mostrarLibros();
+
+        System.out.println("--------------");
+        System.out.println("--------------");
+
+
+        Carrito carrito = new Carrito();
+        Producto producto1 = new Producto("Tomate", 2.30);
+        Producto producto2 = new Producto("Leche", 1.50);
+        Producto producto3 = new Producto("Pan", 0.80);
+
+        carrito.añadirProducto(producto1);
+        carrito.añadirProducto(producto2);
+        carrito.añadirProducto(producto3);
     }
 }
-
